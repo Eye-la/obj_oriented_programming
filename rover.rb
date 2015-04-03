@@ -2,23 +2,23 @@
 
 class Rover
 
-  attr_accessor :init_x, :init_y, :direction
+  attr_accessor :x, :y, :direction
   attr_reader :command
 
-  def initialize(init_x, init_y, direction) 
-    @x = init_x
-    @y = init_y
+  def initialize(x, y, direction) 
+    @x = x
+    @y = y
     @direction = direction
   end
 
   def read_instruction(command)
     command.split(//).each do |s| 
-      if s == "L"
+      if s =="M"
+        move_forward
+      elsif s == "L"
         turn_left
       elsif s == "R"
         turn_right
-      elsif s =="M"
-        move_forward
       end
     end
   end
@@ -65,12 +65,31 @@ class Rover
 
 end
 
+def mission_control
+  puts "Enter rover's initial position:"
+  puts "x y direction(N, E, W, S). Seperate each by space."
+  user_position = gets.chomp 
+  p = user_position.split   
+  
+  my_rover = Rover.new(p[0].to_i, p[1].to_i, p[2].to_s)
 
-my_rover = Rover.new(1, 2, "N")
-puts my_rover
+  puts "Enter navigation instruction:"
+  puts "M - move forward, L - turn left, R - turn right"
+  user_command = gets.chomp
 
-my_rover.read_instruction("LMLMLMLMM")
-puts my_rover
+  my_rover.read_instruction(user_command)
+
+  puts my_rover
+end
+
+mission_control
+  
+# puts my_rover
+
+# my_rover = Rover.new(1, 2, "N")
+
+# my_rover.read_instruction("LMLMLMLMM")
+# puts my_rover
 
 
 
