@@ -8,8 +8,8 @@ class Person
     @name = name
   end
 
-  def greeting
-    puts "Hi, my name is #{@name}."
+  def to_s
+    "Hi, my name is #{@name}."
   end
 end
 
@@ -28,18 +28,20 @@ end
 
 #6. Instuctor Chris
 instructor = Instructor.new("Chris")
-instructor.greeting
-instructor.teach
+puts instructor
 
 #7. Student Cristina
 student = Student.new("Cristina")
-student.greeting
-student.learn
+puts student
+
 
 #8.
 instructor.teach
 student.learn
 
 #student.teach 
-#error to undefined method; teach is not a method for the class student. 
+
+#Error to undefined method; teach is not a method for the class student. 
+#If learn is a branch of Student and teach is a branch of Instructor then 
+#teach cannot communicate to Student. They are not from the same branch.
 
