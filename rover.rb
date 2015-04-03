@@ -16,7 +16,7 @@ class Rover
       if s == "L"
         turn_left
       elsif s == "R"
-        puts "turn_right"
+        turn_right
       elsif s =="M"
         move_forward
       end
@@ -69,7 +69,7 @@ end
 my_rover = Rover.new(1, 2, "N")
 puts my_rover
 
-my_rover.read_instruction("LMLMLMMM")
+my_rover.read_instruction("LMLMLMLMM")
 puts my_rover
 
 
