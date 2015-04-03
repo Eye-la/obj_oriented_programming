@@ -1,36 +1,36 @@
 #Object Oriented Programming: Exercise 2
 
 class Rover
-	def initialize(init_x, init_y, direction) 
+
+  attr_accessor :init_x, :init_y, :direction
+  attr_reader :command
+
+  def initialize(init_x, init_y, direction) 
     @x = init_x
-	  @y = init_y
-	  @direction = direction
+    @y = init_y
+    @direction = direction
   end
 
-  def read_instruction(s_instruct)
-    array = s_instruct.split(//)
-    array.each do |s|
+  def read_instruction(command)
+    command.split(//).each do |s| 
       if s == "L"
-        self.class.turn_left
+        turn_left
       elsif s == "R"
-        self.class.turn_right
-      elsif s == "M"
-        self.class.move_forward
+        puts "turn_right"
+      elsif s =="M"
+        move_forward
       end
     end
   end
-  
+
   def move_forward
     if @direction == "N"
       @y += 1
-    end
-    if @direction == "S"
+    elsif @direction == "S"
       @y -= 1
-    end
-    if @direction == "E"
+    elsif @direction == "E"
       @x += 1
-    end
-    if @direction == "W"
+    elsif @direction == "W"
       @x -= 1
     end
   end
@@ -46,7 +46,7 @@ class Rover
       @direction = "N"
     end
   end
-  
+
   def turn_right
     if @direction == "N"
       @direction = "E"
@@ -62,13 +62,15 @@ class Rover
   def to_s
     "I am at #{@x}, #{@y}, #{@direction}"
   end
+
 end
 
 
+my_rover = Rover.new(1, 2, "N")
+puts my_rover
 
-
-my_rover = Rover.new(2, 2, "S")
-direction = Rover.read_instruction("LMLMLMMM")
+my_rover.read_instruction("LMLMLMMM")
+puts my_rover
 
 
 
